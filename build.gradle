@@ -2,7 +2,7 @@
 
 buildscript {
     repositories {
-//        google()
+        google()
         //新加
         mavenLocal()
         jcenter()
@@ -18,13 +18,14 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.4'
         classpath "io.realm:realm-gradle-plugin:4.3.1"
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
     }
 }
 
 allprojects {
     repositories {
         jcenter()
-//        google()
+        google()
         mavenCentral()
         //新加
         mavenLocal()

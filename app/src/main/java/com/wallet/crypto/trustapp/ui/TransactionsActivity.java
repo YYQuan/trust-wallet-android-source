@@ -3,6 +3,7 @@ package com.wallet.crypto.trustapp.ui;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -43,6 +44,7 @@ import dagger.android.AndroidInjection;
 
 import static com.wallet.crypto.trustapp.C.ETHEREUM_NETWORK_NAME;
 import static com.wallet.crypto.trustapp.C.ETH_SYMBOL;
+import static com.wallet.crypto.trustapp.C.Key.WALLET;
 
 public class TransactionsActivity extends BaseNavigationActivity implements View.OnClickListener {
 
@@ -161,7 +163,9 @@ public class TransactionsActivity extends BaseNavigationActivity implements View
                 return true;
             }
             case R.id.action_my_tokens: {
-                viewModel.showTokens(this);
+//                viewModel.showTokens(this);
+                Intent intent = new Intent(this, Web3Activity.class);
+                this.startActivity(intent);
                 return true;
             }
             case R.id.action_send: {

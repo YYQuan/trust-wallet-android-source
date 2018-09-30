@@ -22,23 +22,20 @@
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.WalletsActivity"
             android:label="@string/title_account_list" />
-
         <activity
             android:name=".ui.ImportWalletActivity"
             android:label="@string/title_import"
             android:windowSoftInputMode="stateAlwaysVisible|adjustResize" />
-
         <activity
             android:name=".ui.TransactionsActivity"
             android:label="@string/title_import" />
-
         <activity
             android:name=".ui.SettingsActivity"
             android:label="@string/title_activity_settings" />
@@ -51,24 +48,18 @@
         <activity
             android:name=".ui.TokensActivity"
             android:label="@string/title_my_tokens" />
-
         <activity
             android:name=".ui.SendActivity"
             android:label="@string/title_activity_send" />
-
         <activity
             android:name=".ui.ConfirmationActivity"
             android:label="@string/title_activity_confirmation" />
-
         <activity
             android:name=".ui.AddTokenActivity"
-            android:label="@string/title_add_token"
-            />
-
+            android:label="@string/title_add_token" />
         <activity
             android:name=".ui.barcode.BarcodeCaptureActivity"
             android:label="@string/title_activity_barcode" />
-
         <activity
             android:name=".ui.GasSettingsActivity"
             android:label="@string/title_send_settings" />
@@ -76,6 +67,11 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="74d3fa8b5038a154c0c05555d27112a0d4a80d68" />
+
+        <activity
+            android:name=".ui.Web3Activity"
+            android:label="@string/title_activity_web3"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
