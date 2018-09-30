@@ -2,14 +2,21 @@
 
 buildscript {
     repositories {
-        google()
+//        google()
+        //新加
+        mavenLocal()
         jcenter()
         mavenCentral()
+//        maven { url 'https://jitpack.io' }
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+//        maven {
+//            url 'http://maven.aliyun.com/nexus/content/repositories/releases/'
+//        }
         maven { url 'https://jitpack.io' }
-        google()
+//        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.1.4'
         classpath "io.realm:realm-gradle-plugin:4.3.1"
     }
 }
@@ -17,9 +24,17 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
-        google()
+//        google()
         mavenCentral()
+        //新加
+        mavenLocal()
+//        maven { url 'https://jitpack.io' }
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+//        maven {
+//            url 'http://maven.aliyun.com/nexus/content/repositories/releases/'
+//        }
         maven { url 'https://jitpack.io' }
+//        google()
     }
 }
 

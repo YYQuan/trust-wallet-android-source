@@ -21,7 +21,9 @@ public class CreateWalletInteract {
 
 	public Single<Wallet> create() {
 	    return passwordStore.generatePassword()
-		.flatMap(masterPassword -> walletRepository
+//		这个masterPassword值 是用   Single<String>   中的泛型类型的实际中得到的
+			.flatMap(masterPassword -> walletRepository
+//				这里实际的创建钱包
 			.createWallet(masterPassword)
 			.compose(Operators.savePassword(passwordStore, walletRepository, masterPassword))
                        	.flatMap(wallet -> passwordVerification(wallet, masterPassword)));

@@ -38,10 +38,27 @@ public class EthereumNetworkRepository implements EthereumNetworkRepositoryType 
                     "https://kovan.infura.io/llyrtzQ3YhkdESt2Fzrk",
                     "https://kovan.trustwalletapp.com/",
                     "https://kovan.etherscan.io", 42, false),
-			new NetworkInfo(ROPSTEN_NETWORK_NAME, ETH_SYMBOL,
-                    "https://ropsten.infura.io/llyrtzQ3YhkdESt2Fzrk",
-                    "https://ropsten.trustwalletapp.com/",
-                    "https://ropsten.etherscan.io",3, false),
+			new NetworkInfo(
+//					ROPSTEN_NETWORK_NAME,
+					"Rinkeby(Test)",
+					ETH_SYMBOL,
+//                    "https://ropsten.infura.io/llyrtzQ3YhkdESt2Fzrk",
+					"https://rinkeby.infura.io/llyrtzQ3YhkdESt2Fzrk",
+//                    "https://ropsten.trustwalletapp.com/",
+					"https://rinkeby.trustwalletapp.com/",
+					"https://rinkeby.etherscan.io",4, false),
+//                    "https://ropsten.etherscan.io",3, false),
+			/*
+				new NetworkInfo("Rinkeby(Test)", ETH_SYMBOL,
+					"https://rinkeby.infura.io/llyrtzQ3YhkdESt2Fzrk",
+                    "https://ropsten.trustwalletapp.com/",  待定
+					"https://rinkeby.etherscan.io",4, false)
+
+				rinkeby
+				查询余额
+				"https://rinkeby.infura.io/llyrtzQ3YhkdESt2Fzrk",
+				chainID :4
+			*/
 	};
 
 	private final PreferenceRepositoryType preferences;

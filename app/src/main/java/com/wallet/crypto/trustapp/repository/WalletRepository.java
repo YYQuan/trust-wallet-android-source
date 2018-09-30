@@ -88,6 +88,7 @@ public class WalletRepository implements WalletRepositoryType {
 				.flatMap(this::findWallet);
 	}
 
+//	查询账号余额
 	@Override
 	public Single<BigInteger> balanceInWei(Wallet wallet) {
 		return Single.fromCallable(() -> Web3jFactory

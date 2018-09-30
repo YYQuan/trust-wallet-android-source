@@ -25,6 +25,9 @@ import dagger.android.AndroidInjection;
 
 public class SettingsFragment extends PreferenceFragment
         implements SharedPreferences.OnSharedPreferenceChangeListener {
+
+//    这里使用管理dagger2 注入   @Inject   和在 onCreate（）中的AndroidInjection.inject(this)配合下
+//    不需要 手动的去构造 被@Inject注解的成员变量了。
     @Inject
     EthereumNetworkRepositoryType ethereumNetworkRepository;
     @Inject
@@ -42,7 +45,8 @@ public class SettingsFragment extends PreferenceFragment
         final Preference wallets = findPreference("pref_wallet");
 
         wallets.setOnPreferenceClickListener(preference -> {
-            manageWalletsRouter.open(getActivity(), false);
+//            manageWalletsRouter.open(getActivity(), false);
+            manageWalletsRouter.open(getActivity(), true);
             return false;
         });
 

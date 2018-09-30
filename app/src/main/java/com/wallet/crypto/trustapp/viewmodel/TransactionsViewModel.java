@@ -116,6 +116,7 @@ public class TransactionsViewModel extends BaseViewModel {
     }
 
     public void getBalance() {
+        //周期性的调用   defaultWalletBalance::postValue
         balanceDisposable = Observable.interval(0, GET_BALANCE_INTERVAL, TimeUnit.SECONDS)
                 .doOnNext(l -> getDefaultWalletBalance
                         .get(defaultWallet.getValue())
@@ -132,7 +133,9 @@ public class TransactionsViewModel extends BaseViewModel {
 
     private void onDefaultWallet(Wallet wallet) {
         defaultWallet.setValue(wallet);
+//        开启定时刷新余额 以及eth价格
         getBalance();
+//        开始定时刷新transaction 信息
         fetchTransactions();
     }
 

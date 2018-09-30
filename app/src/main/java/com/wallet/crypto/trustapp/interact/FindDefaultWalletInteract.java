@@ -18,9 +18,14 @@ public class FindDefaultWalletInteract {
 	public Single<Wallet> find() {
 		return walletRepository
 				.getDefaultWallet()
-				.onErrorResumeNext(walletRepository
+//				onErrorResumeNext操作符的意思是 如果  single 回调error的时候，
+// 	·			就用 新的single（onErrorResumeNext中的参数）替代原始的single 去通知观察者
+				.onErrorResumeNext(
+//						这部分只在原始single  error时 起作用
+						walletRepository
 						.fetchWallets()
 						.to(single -> Flowable.fromArray(single.blockingGet()))
+//						那flowable中的第一个元素，如果该元素为null则throw 异常
 						.firstOrError()
 						.flatMapCompletable(walletRepository::setDefaultWallet)
 						.andThen(walletRepository.getDefaultWallet()))

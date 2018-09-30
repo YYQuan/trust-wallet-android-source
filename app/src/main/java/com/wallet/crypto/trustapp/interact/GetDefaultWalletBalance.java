@@ -1,5 +1,6 @@
 package com.wallet.crypto.trustapp.interact;
 
+import com.wallet.crypto.trustapp.entity.Ticker;
 import com.wallet.crypto.trustapp.entity.Wallet;
 import com.wallet.crypto.trustapp.repository.EthereumNetworkRepositoryType;
 import com.wallet.crypto.trustapp.repository.WalletRepositoryType;
@@ -9,7 +10,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import io.reactivex.Single;
+import io.reactivex.SingleSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 import static com.wallet.crypto.trustapp.C.USD_SYMBOL;
@@ -28,7 +31,7 @@ public class GetDefaultWalletBalance {
     }
 
     public Single<Map<String, String>> get(Wallet wallet) {
-        return walletRepository.balanceInWei(wallet)
+        return walletRepository.balanceInWei(wallet)//获取余额
                 .flatMap(ethBallance -> {
                     Map<String, String> balances = new HashMap<>();
                     balances.put(ethereumNetworkRepository.getDefaultNetwork().symbol, weiToEth(ethBallance, 5));
@@ -37,9 +40,12 @@ public class GetDefaultWalletBalance {
                 .flatMap(balances -> ethereumNetworkRepository
                         .getTicker()
                         .observeOn(Schedulers.io())
-                        .flatMap(ticker -> {
+                        .flatMap((Ticker ticker) -> {
                             String ethBallance = balances.get(ethereumNetworkRepository.getDefaultNetwork().symbol);
-                            balances.put(USD_SYMBOL, BalanceUtils.ethToUsd(ticker.price, ethBallance));
+//                            eth余额转美元
+//                            balances.put(USD_SYMBOL, BalanceUtils.ethToUsd(ticker.price, ethBallance));
+//                            当前一个eth的市场价
+                            balances.put(USD_SYMBOL, ticker.price);
                             return Single.just(balances);
                         })
                         .onErrorResumeNext(throwable -> Single.just(balances)))

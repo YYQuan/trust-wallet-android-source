@@ -127,6 +127,8 @@ public class GethKeystoreAccountService implements AccountKeystoreService {
     @Override
     public Single<Wallet[]> fetchAccounts() {
         return Single.fromCallable(() -> {
+//            注意这里用geth的 getAccounts  api 返回的是当前钱包里所有的账户，
+//            是不是说明geth 就已经做了 账户的管理了？
             Accounts accounts = keyStore.getAccounts();
             int len = (int) accounts.size();
             Wallet[] result = new Wallet[len];

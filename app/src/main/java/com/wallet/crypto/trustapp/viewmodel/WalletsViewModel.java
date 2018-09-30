@@ -1,5 +1,6 @@
 package com.wallet.crypto.trustapp.viewmodel;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
@@ -93,7 +94,7 @@ public class WalletsViewModel extends BaseViewModel {
 		wallets.postValue(items);
 		disposable = findDefaultWalletInteract
 				.find()
-				.subscribe(this::onDefaultWalletChanged, t -> {});
+				.subscribe(this::onDefaultWalletChanged, (Throwable t) -> {});
 	}
 
 	private void onDefaultWalletChanged(Wallet wallet) {
@@ -108,10 +109,13 @@ public class WalletsViewModel extends BaseViewModel {
 				.subscribe(this::onFetchWallets, this::onError);
 	}
 
-	public void newWallet() {
+//	具体 create wallet 的地方
+
+    public void newWallet() {
 		progress.setValue(true);
 		createWalletInteract
 				.create()
+//				create 过程中没有throw 就回调success ,如果有throw  异常的话，那么就会掉error
 				.subscribe(account -> {
 					fetchWallets();
 					createdWallet.postValue(account);

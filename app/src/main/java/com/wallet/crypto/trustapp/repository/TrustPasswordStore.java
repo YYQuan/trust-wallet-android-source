@@ -77,6 +77,7 @@ public class TrustPasswordStore implements PasswordStore {
         });
 	}
 
+	//产生 随机  password
 	@Override
 	public Single<String> generatePassword() {
 		return Single.fromCallable(() -> {

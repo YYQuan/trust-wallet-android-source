@@ -84,6 +84,7 @@ public class TransactionsActivity extends BaseNavigationActivity implements View
         viewModel.progress().observe(this, systemView::showProgress);
         viewModel.error().observe(this, this::onError);
         viewModel.defaultNetwork().observe(this, this::onDefaultNetwork);
+//        当walletBalance有变动就回调 this.onBalanceChanged
         viewModel.defaultWalletBalance().observe(this, this::onBalanceChanged);
         viewModel.defaultWallet().observe(this, this::onDefaultWallet);
         viewModel.transactions().observe(this, this::onTransactions);
@@ -102,6 +103,7 @@ public class TransactionsActivity extends BaseNavigationActivity implements View
         setTitle(getString(R.string.unknown_balance_without_symbol));
         setSubtitle("");
         adapter.clear();
+//        获取余额信息 以及价格信息
         viewModel.prepare();
         checkRoot();
     }
@@ -170,6 +172,7 @@ public class TransactionsActivity extends BaseNavigationActivity implements View
         return false;
     }
 
+//    balance 改变时， UI响应
     private void onBalanceChanged(Map<String, String> balance) {
         ActionBar actionBar = getSupportActionBar();
         NetworkInfo networkInfo = viewModel.defaultNetwork().getValue();

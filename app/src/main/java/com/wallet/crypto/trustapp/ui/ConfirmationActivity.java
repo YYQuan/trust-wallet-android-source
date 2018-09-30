@@ -138,9 +138,11 @@ public class ConfirmationActivity extends BaseActivity {
         }
     }
 
+//    click Btn  send   的 回调
     private void onSend() {
         GasSettings gasSettings = viewModel.gasSettings().getValue();
 
+//        这个是eth的通道， 包括eth， etc ,poa等钱包本身支持的网络
         if (!confirmationForTokenTransfer) {
             viewModel.createTransaction(
                     fromAddressText.getText().toString(),
@@ -148,7 +150,9 @@ public class ConfirmationActivity extends BaseActivity {
                     amount,
                     gasSettings.gasPrice,
                     gasSettings.gasLimit);
-        } else {
+        }
+//        这是是旗下token（代币）的通道
+        else {
             viewModel.createTokenTransfer(
                     fromAddressText.getText().toString(),
                     toAddressText.getText().toString(),

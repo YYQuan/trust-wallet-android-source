@@ -35,6 +35,8 @@ import dagger.android.AndroidInjection;
 import static com.wallet.crypto.trustapp.C.IMPORT_REQUEST_CODE;
 import static com.wallet.crypto.trustapp.C.SHARE_REQUEST_CODE;
 
+
+//create  wallet
 public class WalletsActivity extends BaseActivity implements
 		View.OnClickListener,
         AddWalletView.OnNewWalletClickListener,
@@ -79,12 +81,13 @@ public class WalletsActivity extends BaseActivity implements
 				.get(WalletsViewModel.class);
 
 		viewModel.error().observe(this, this::onError);
+		//callback
 		viewModel.progress().observe(this, systemView::showProgress);
 		viewModel.wallets().observe(this, this::onFetchWallet);
 		viewModel.defaultWallet().observe(this, this::onChangeDefaultWallet);
 		viewModel.createdWallet().observe(this, this::onCreatedWallet);
 		viewModel.exportedStore().observe(this, this::openShareDialog);
-
+		//callback
 		refreshLayout.setOnRefreshListener(viewModel::fetchWallets);
 	}
 
@@ -187,6 +190,8 @@ public class WalletsActivity extends BaseActivity implements
 		}
 	}
 
+
+//	 AddWalletView中的create new  wallet 的回调
 	@Override
 	public void onNewWallet(View view) {
 		hideDialog();
@@ -234,6 +239,7 @@ public class WalletsActivity extends BaseActivity implements
 		invalidateOptionsMenu();
 	}
 
+//	backup的wallet 信息由这里传入
 	private void onCreatedWallet(Wallet wallet) {
         hideToolbar();
         backupWarning.show(wallet);
@@ -243,6 +249,12 @@ public class WalletsActivity extends BaseActivity implements
         showNoBackupWarning(wallet);
     }
 
+
+	/**
+	 * 备份keystore
+	 * @param view
+	 * @param wallet
+	 */
     private void onNowBackup(View view, Wallet wallet) {
         showBackupDialog(wallet, true);
     }
